@@ -1,0 +1,21 @@
+.filter {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-bottom: 16px;
+}
+
+.date {
+  outline: none;
+  width: 110px;
+  border: 1px solid #ccc;
+  padding: 8px 16px 8px 16px;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-right: 8px;
+}
+
+.filterDropdown {
+  margin-right: 8px;
+}

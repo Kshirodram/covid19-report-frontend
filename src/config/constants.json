@@ -1,0 +1,8 @@
+{
+  "development": {
+    "API_URL": "http://localhost:3001"
+  },
+  "production": {
+    "API_URL": "https://covid19-report-api.herokuapp.com"
+  }
+}

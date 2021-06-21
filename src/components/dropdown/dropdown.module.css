@@ -1,0 +1,70 @@
+.drodownWrapper {
+  position: relative;
+  display: inline-block;
+}
+.inputBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.input {
+  outline: none;
+  width: 250px;
+  border: 1px solid #ccc;
+  padding: 8px 58px 8px 16px;
+  border-radius: 4px;
+  font-size: 16px;
+}
+.input:focus {
+  border: 1px solid #089bff;
+}
+
+.inputBoxIcons {
+  position: absolute;
+  right: 6px;
+}
+
+.divider {
+  width: 1px;
+  height: 19px;
+  background-color: #ccc;
+  box-sizing: border-box;
+  display: inline-block;
+  margin: 0 4px;
+}
+.icon:hover {
+  fill: #b1b1b1;
+  cursor: pointer;
+}
+
+.optionsWrapper {
+  position: absolute;
+  top: 36px;
+  background-color: #fff;
+  box-shadow: 0 1px 6px 0 rgb(0 0 0 / 20%);
+  display: flex;
+  flex-direction: column;
+  left: 0px;
+  right: 0px;
+  height: 200px;
+  overflow: auto;
+  z-index: 999;
+}
+
+.optionsWrapper li {
+  padding: 8px 16px;
+  text-align: left;
+  cursor: pointer;
+  border-bottom: 1px solid #ccc;
+}
+
+.optionsWrapper li:hover {
+  background-color: #f1f1f1;
+}
+
+.dropDownLoader {
+  position: absolute;
+  bottom: 4px;
+  right: 32px;
+}

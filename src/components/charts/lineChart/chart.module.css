@@ -1,0 +1,21 @@
+.chartWrapper {
+  margin: 42px;
+}
+.chartContent {
+  position: relative;
+}
+
+.chartLoading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.chartLoader {
+  border-width: 8px;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

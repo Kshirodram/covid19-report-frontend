@@ -1,0 +1,15 @@
+.reportPage {
+  text-align: center;
+  padding: 24px;
+}
+.header h1 {
+  font-size: 24px;
+  text-align: left;
+  margin-bottom: 16px;
+}
+.header p {
+  font-size: 12px;
+  font-style: italic;
+  text-align: left;
+  margin: 10px 0;
+}
