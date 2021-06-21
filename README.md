@@ -13,6 +13,11 @@ npm -v
 ## Setup API server
 Before running any script inside this directory please setup [API server](https://www.goole.com) to run the app locally. If you dont want to setup the app then please run the app in `production` mode, which will connet to the heroku API server. [API link](https://covid19-report-api.herokuapp.com/api)
 
+## Setup
+To setup the project please clone the repo and go inside the directory run
+
+#### `npm install`
+
 ## Available Scripts
 
 In the project directory, you can run:
