@@ -1,6 +1,6 @@
 # Data visulization for covid19
 
-<img width="640" alt="Screenshot 2021-06-22 at 2 52 00 AM" src="https://user-images.githubusercontent.com/3234785/122829602-d3b33880-d304-11eb-914d-51ccd1acb9a1.png">
+<img width="640" alt="Screenshot 2021-06-22 at 2 52 00 AM" src="https://user-images.githubusercontent.com/3234785/122829602-d3b33880-d304-11eb-914d-51ccd1acb9a1.png"> [demo](https://covid19-report-frontend.herokuapp.com/)
 
 ## Prerequisite
 To run the project you need to have [Node.js](http://nodejs.org/) and [npm](https://www.npmjs.com/) installed in your system. You can check that using 
@@ -11,7 +11,7 @@ npm -v
 *Note that to build and run the app you need `node>=10.x.x`*
 
 ## Setup API server
-Before running any script inside this directory please setup [API server](https://www.goole.com) to run the app locally. If you dont want to setup the app then please run the app in `production` mode, which will connet to the heroku API server. [API link](https://covid19-report-api.herokuapp.com/api)
+Before running any script inside this directory please setup [API server](https://github.com/Kshirodram/covid19-report-backend) to run the app locally. If you dont want to setup the app then please run the app in `production` mode, which will connet to the heroku API server. [Deployed API link](https://covid19-report-backend.herokuapp.com/)
 
 ## Setup
 To setup the project please clone the repo and go inside the directory run
