@@ -25,18 +25,18 @@ const countriesReducer = (state, action) => {
   }
 };
 
-const reportReducer = (state, action) => {
+const confirmedReducer = (state, action) => {
   switch (action.type) {
-    case actions.GET_REPORT:
+    case actions.GET_CONFIRMED:
       return { ...state, isLoading: true };
-    case actions.GET_REPORT_SUCCESS:
+    case actions.GET_CONFIRMED_SUCCESS:
       return {
         ...state,
         isLoading: false,
         result: action.payload,
         error: null,
       };
-    case actions.GET_REPORT_ERROR:
+    case actions.GET_CONFIRMED_ERROR:
       return { ...state, isLoading: false, result: [], error: action.payload };
 
     default:
@@ -44,4 +44,47 @@ const reportReducer = (state, action) => {
   }
 };
 
-export { countriesReducer, reportReducer };
+const recoveredReducer = (state, action) => {
+  switch (action.type) {
+    case actions.GET_RECOVERED:
+      return { ...state, isLoading: true };
+    case actions.GET_RECOVERED_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        result: action.payload,
+        error: null,
+      };
+    case actions.GET_RECOVERED_ERROR:
+      return { ...state, isLoading: false, result: [], error: action.payload };
+
+    default:
+      return { ...state };
+  }
+};
+
+const deathsReducer = (state, action) => {
+  switch (action.type) {
+    case actions.GET_DEATHS:
+      return { ...state, isLoading: true };
+    case actions.GET_DEATHS_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        result: action.payload,
+        error: null,
+      };
+    case actions.GET_DEATHS_ERROR:
+      return { ...state, isLoading: false, result: [], error: action.payload };
+
+    default:
+      return { ...state };
+  }
+};
+
+export {
+  countriesReducer,
+  confirmedReducer,
+  recoveredReducer,
+  deathsReducer,
+};

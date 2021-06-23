@@ -6,13 +6,14 @@ import Loader from "../../loader";
 import Styles from "./chart.module.css";
 
 const MultiLineChart = ({ dataSource, headingText, loading }) => {
-  let sanitizedData = (dataSource && dataSource.data) || [];
+  let sanitizedData1 = (dataSource && dataSource[0] && dataSource[0].data) || [];
+  let sanitizedData2 = (dataSource && dataSource[1] && dataSource[1].data) || [];
   const data = {
-    labels: sanitizedData.map((item) => item.date),
+    labels: sanitizedData1.map((item) => item.date),
     datasets: [
       {
         label: "reported",
-        data: sanitizedData.map((item) => item.confirmedPerDay),
+        data: sanitizedData1.map((item) => item.casesPerDay),
         fill: false,
         backgroundColor: "rgb(255, 99, 132)",
         borderColor: "rgba(255, 99, 132, 0.2)",
@@ -20,7 +21,7 @@ const MultiLineChart = ({ dataSource, headingText, loading }) => {
       },
       {
         label: "recovered",
-        data: sanitizedData.map((item) => item.recoveredPerDay),
+        data: sanitizedData2.map((item) => item.casesPerDay),
         fill: false,
         backgroundColor: "rgb(54, 162, 235)",
         borderColor: "rgba(54, 162, 235, 0.2)",

@@ -12,7 +12,7 @@ const SingleLineChart = ({ dataSource, headingText, loading }) => {
     datasets: [
       {
         label: "deaths",
-        data: sanitizedData.map((item) => item.deathsPerDay),
+        data: sanitizedData.map((item) => item.casesPerDay),
         fill: false,
         backgroundColor: "#b4b4b4",
         yAxisID: "y",

@@ -26,7 +26,17 @@ const formatData = (data, filterType = "country") => {
  * @param {date}  Date() string.
  * @return {date} to returns formatted date
  */
-const formatDate = (date) => date.toISOString().split("T")[0];
+ const formatDate = (date) => {
+  let d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+  if (month.length < 2) 
+      month = '0' + month;
+  if (day.length < 2) 
+      day = '0' + day;
+  return [year, month, day].join('-');
+}
 
 /**
  * Returns latest date data as it will

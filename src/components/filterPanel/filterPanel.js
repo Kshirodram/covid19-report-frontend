@@ -18,7 +18,7 @@ const FilterPanel = ({ onSubmit, loading, data, ...rest }) => {
 
   const filterStatesBasedOnCountry = (data, selectedCountry) => {
     const selectedCountryArr = data.filter((country) => {
-      return country.name === selectedCountry;
+      return country.value === selectedCountry;
     });
     if (selectedCountryArr.length === 1) {
       return selectedCountryArr[0].states || [];

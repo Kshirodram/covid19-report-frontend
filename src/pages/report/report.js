@@ -4,11 +4,18 @@ import LineChart from "../../components/charts/lineChart";
 import FilterPanel from "../../components/filterPanel";
 import PieChart from "../../components/charts/pieChart";
 
-import { fetchCountries, fetchReport } from "./report.actions";
+import {
+  fetchCountries,
+  fetchConfirmed,
+  fetchRecovered,
+  fetchDeaths,
+} from "./report.actions";
 import {
   initialState,
   countriesReducer,
-  reportReducer,
+  confirmedReducer,
+  recoveredReducer,
+  deathsReducer,
 } from "./report.reducers";
 
 import { formatDate } from "../../utils/formatData";
@@ -20,12 +27,27 @@ const ReportPage = () => {
     countriesReducer,
     initialState
   );
-  const [reportData, reportDispatch] = useReducer(reportReducer, initialState);
+
+  const [confirmedData, confirmedDispatch] = useReducer(
+    confirmedReducer,
+    initialState
+  );
+  const [recoveredData, recoveredDispatch] = useReducer(
+    recoveredReducer,
+    initialState
+  );
+  const [deathsData, deathsDispatch] = useReducer(deathsReducer, initialState);
 
   useEffect(() => {
     fetchCountries(countryDispatch);
-    fetchReport(reportDispatch);
-  }, [countryDispatch]);
+    (async () => {
+      await Promise.all([
+        fetchConfirmed(confirmedDispatch),
+        fetchRecovered(recoveredDispatch),
+      ]);
+    })();
+    fetchDeaths(deathsDispatch);
+  }, [countryDispatch, confirmedDispatch, recoveredDispatch, deathsDispatch]);
 
   const applyFilter = useCallback((filterValues) => {
     let newFilterValues = {};
@@ -44,15 +66,16 @@ const ReportPage = () => {
         };
       }
     }
-    fetchReport(reportDispatch, newFilterValues);
+    (async () => {
+      await Promise.all([
+        fetchConfirmed(confirmedDispatch, newFilterValues),
+        fetchRecovered(recoveredDispatch, newFilterValues),
+      ]);
+    })();
+
+    fetchDeaths(deathsDispatch, newFilterValues);
   }, []);
 
-  // TODO: to format the data on client side
-  // check formatdata util. running out of time ^x^
-  const simulateData =
-    reportData && reportData.result && reportData.result.length > [0]
-      ? reportData.result[0]
-      : [];
   return (
     <div className={Styles.reportPage}>
       <header className={Styles.header}>
@@ -70,19 +93,19 @@ const ReportPage = () => {
             true
           } /* This is redundant we dont need it. If data is formated based on number of source we can decide 
           if its a single line or multiline chart */
-          dataSource={simulateData}
+          dataSource={[confirmedData.result[0], recoveredData.result[0]]}
           headingText={"Reported and recovered cases"}
-          loading={reportData.isLoading}
+          loading={confirmedData.isLoading && recoveredData.isLoading}
         />
         <LineChart
-          dataSource={simulateData}
+          dataSource={deathsData.result[0]}
           headingText={"Death cases"}
-          loading={reportData.isLoading}
+          loading={deathsData.isLoading}
         />
         <PieChart
-          dataSource={reportData.result}
+          dataSource={confirmedData.result}
           headingText={"Reported cases"}
-          loading={reportData.isLoading}
+          loading={confirmedData.isLoading}
         />
       </main>
     </div>
