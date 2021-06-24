@@ -1,23 +1,47 @@
 import _ from "lodash";
 
 /**
+ * Returns merged data with sum of keys for two arrays
+ *
+ * @param {array} arr1 Array to be merged
+ * @param {array} arr2 Array to be merged
+ * @param {string} key Key type whether confirmed/recovered/deaths
+ * @return {array} formattedData
+ */
+// TODO: revisit this again. skipping this for demo purpose
+const mergeArrays = (arr1, arr2, type) => {
+  return Object.values(
+    arr1.concat(arr2).reduce((acc, v) => {
+      if (!acc[v.date]) {
+        acc[v.date] = { date: v.date, casesPerDay: 0, [type]: 0 };
+      }
+      acc[v.date][type] += v[type];
+      acc[v.date].casesPerDay += v.casesPerDay;
+      return acc;
+    }, {})
+  );
+};
+
+/**
  * Returns formatted data for charts
  *
  * @param {array} data Raw API response to be formatted.
  * @return {array} formattedData
  */
 // TODO: revisit this again. skipping this for demo purpose
-const formatData = (data, filterType = "country") => {
-  const groupedData = _.groupBy(data, "countryCode");
-  const countriesCode = Object.keys(groupedData);
-  countriesCode.forEach((cc) => {
-    if (cc) {
-      groupedData[cc].forEach((item) => {
-        // const confirmedTotal = _.sumBy(item.data, obj => _.sumBy(obj.Specific, 'Value'))
-      });
+const formatData = (rawData, type = "confirmed", filterType = "") => {
+  if (rawData && rawData.length > 1) {
+    let newData = [...rawData[0].data];
+    for (let i = 1; i < rawData.length; i++) {
+      const mergedData = mergeArrays(newData, rawData[i].data, type);
+      newData = [...mergedData];
     }
-  });
-  return data;
+    return newData;
+  } else if (rawData && rawData.length === 1) {
+    return rawData[0].data;
+  } else {
+    return [];
+  }
 };
 
 /**
@@ -26,17 +50,15 @@ const formatData = (data, filterType = "country") => {
  * @param {date}  Date() string.
  * @return {date} to returns formatted date
  */
- const formatDate = (date) => {
+const formatDate = (date) => {
   let d = new Date(date),
-      month = '' + (d.getMonth() + 1),
-      day = '' + d.getDate(),
-      year = d.getFullYear();
-  if (month.length < 2) 
-      month = '0' + month;
-  if (day.length < 2) 
-      day = '0' + day;
-  return [year, month, day].join('-');
-}
+    month = "" + (d.getMonth() + 1),
+    day = "" + d.getDate(),
+    year = d.getFullYear();
+  if (month.length < 2) month = "0" + month;
+  if (day.length < 2) day = "0" + day;
+  return [year, month, day].join("-");
+};
 
 /**
  * Returns latest date data as it will

@@ -18,7 +18,7 @@ import {
   deathsReducer,
 } from "./report.reducers";
 
-import { formatDate } from "../../utils/formatData";
+import { formatDate, formatData } from "../../utils/formatData";
 
 import Styles from "./report.module.css";
 
@@ -76,6 +76,10 @@ const ReportPage = () => {
     fetchDeaths(deathsDispatch, newFilterValues);
   }, []);
 
+  const formattedConfirmedData = formatData(confirmedData.result, "confirmed");
+  const formattedRecoveredData = formatData(recoveredData.result, "recovered");
+  const formattedDeathsdData = formatData(deathsData.result, "deaths");
+
   return (
     <div className={Styles.reportPage}>
       <header className={Styles.header}>
@@ -93,12 +97,12 @@ const ReportPage = () => {
             true
           } /* This is redundant we dont need it. If data is formated based on number of source we can decide 
           if its a single line or multiline chart */
-          dataSource={[confirmedData.result[0], recoveredData.result[0]]}
+          dataSource={[formattedConfirmedData, formattedRecoveredData]}
           headingText={"Reported and recovered cases"}
           loading={confirmedData.isLoading && recoveredData.isLoading}
         />
         <LineChart
-          dataSource={deathsData.result[0]}
+          dataSource={formattedDeathsdData}
           headingText={"Death cases"}
           loading={deathsData.isLoading}
         />

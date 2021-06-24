@@ -6,13 +6,12 @@ import Loader from "../../loader";
 import Styles from "./chart.module.css";
 
 const SingleLineChart = ({ dataSource, headingText, loading }) => {
-   const sanitizedData = (dataSource && dataSource.data) || [];
   const data = {
-    labels: sanitizedData.map((item) => item.date),
+    labels: dataSource.map((item) => item.date),
     datasets: [
       {
         label: "deaths",
-        data: sanitizedData.map((item) => item.casesPerDay),
+        data: dataSource.map((item) => item.casesPerDay),
         fill: false,
         backgroundColor: "#b4b4b4",
         yAxisID: "y",

@@ -6,8 +6,8 @@ import Loader from "../../loader";
 import Styles from "./chart.module.css";
 
 const MultiLineChart = ({ dataSource, headingText, loading }) => {
-  let sanitizedData1 = (dataSource && dataSource[0] && dataSource[0].data) || [];
-  let sanitizedData2 = (dataSource && dataSource[1] && dataSource[1].data) || [];
+  let sanitizedData1 = (dataSource && dataSource[0]) || [];
+  let sanitizedData2 = (dataSource && dataSource[1]) || [];
   const data = {
     labels: sanitizedData1.map((item) => item.date),
     datasets: [
